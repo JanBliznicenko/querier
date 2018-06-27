@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "Querier-PostgreSQL",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"stream",
+		"singleTableQuery"
+	],
+	"name" : "QRRPostgreSqlQueryBuilderStream",
+	"type" : "normal"
+}

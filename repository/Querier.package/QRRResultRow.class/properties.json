@@ -1,0 +1,17 @@
+{
+	"commentStamp" : "",
+	"super" : "QRRAccessorObject",
+	"category" : "Querier-Result",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"result",
+		"values",
+		"referencedRows",
+		"modifiedColumns",
+		"exists"
+	],
+	"name" : "QRRResultRow",
+	"type" : "normal"
+}

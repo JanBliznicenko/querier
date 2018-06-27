@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "",
+	"super" : "QRRAccessorObject",
+	"category" : "Querier-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"structure",
+		"rowMapping",
+		"cache",
+		"driver"
+	],
+	"name" : "QRRQuerier",
+	"type" : "normal"
+}

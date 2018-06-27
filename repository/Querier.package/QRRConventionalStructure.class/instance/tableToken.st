@@ -1,0 +1,3 @@
+constants
+tableToken
+	^ '{' , self tableTokenName , '}'

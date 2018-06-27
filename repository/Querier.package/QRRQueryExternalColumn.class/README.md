@@ -1,0 +1,1 @@
+I am a column that is external to the query, i.e. comes from a different query. These may appear in nested queries.

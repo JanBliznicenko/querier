@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "QRRQueryConstant",
+	"category" : "Querier-Queries-Expressions",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "QRRQueryStringConstant",
+	"type" : "normal"
+}

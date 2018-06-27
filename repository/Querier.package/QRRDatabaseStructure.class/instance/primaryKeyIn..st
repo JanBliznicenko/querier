@@ -1,0 +1,3 @@
+accessing
+primaryKeyIn: tableString
+	self subclassResponsibility

@@ -1,0 +1,15 @@
+{
+	"classtraitcomposition" : "QRRTBasicQueryExpression classTrait",
+	"classvars" : [ ],
+	"instvars" : [
+		"identifiers"
+	],
+	"name" : "QRRQueryColumn",
+	"commentStamp" : "",
+	"super" : "QRRAccessorObject",
+	"traitcomposition" : "QRRTBasicQueryExpression",
+	"type" : "normal",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"category" : "Querier-Queries-Expressions"
+}

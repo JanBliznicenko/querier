@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "QRRQueryComparison",
+	"category" : "Querier-Queries-Expressions",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "QRRQueryLessThanOrEqualComparison",
+	"type" : "normal"
+}

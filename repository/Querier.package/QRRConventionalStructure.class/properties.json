@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "",
+	"super" : "QRRDatabaseStructure",
+	"category" : "Querier-Structure",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"primaryKey",
+		"foreignKey",
+		"tableName",
+		"tablePrefix"
+	],
+	"name" : "QRRConventionalStructure",
+	"type" : "normal"
+}

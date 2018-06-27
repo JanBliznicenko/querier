@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "QRRRawQueryResult",
+	"category" : "Querier-PostgreSQL",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"driver",
+		"queryString",
+		"columns"
+	],
+	"name" : "QRRPostgreSqlQueryResult",
+	"type" : "normal"
+}

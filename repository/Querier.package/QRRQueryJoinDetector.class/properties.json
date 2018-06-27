@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "QRRQueryColumnVisitor",
+	"category" : "Querier-Queries-Visitors",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "QRRQueryJoinDetector",
+	"type" : "normal"
+}

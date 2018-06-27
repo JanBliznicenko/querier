@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "QRRQueryBuilder",
+	"category" : "Querier-PostgreSQL",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "QRRPostgreSqlQueryBuilder",
+	"type" : "normal"
+}

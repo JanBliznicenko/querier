@@ -1,0 +1,3 @@
+constants
+targetTokenName
+	^ #target

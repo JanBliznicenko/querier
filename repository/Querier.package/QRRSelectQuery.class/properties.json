@@ -1,0 +1,18 @@
+{
+	"commentStamp" : "",
+	"super" : "QRRQuery",
+	"category" : "Querier-Queries",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"columns",
+		"condition",
+		"grouping",
+		"ordering",
+		"limit",
+		"joins"
+	],
+	"name" : "QRRSelectQuery",
+	"type" : "normal"
+}

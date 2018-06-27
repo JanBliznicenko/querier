@@ -1,0 +1,3 @@
+accessing
+defaultQueryBuilder
+	^ QRRPostgreSqlQueryBuilder new

@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "QRRQuery",
+	"category" : "Querier-Queries",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"columnsAndValues",
+		"returnRow"
+	],
+	"name" : "QRRInsertQuery",
+	"type" : "normal"
+}

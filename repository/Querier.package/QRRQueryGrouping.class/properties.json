@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "QRRQueryPart",
+	"category" : "Querier-Queries",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"columns",
+		"condition"
+	],
+	"name" : "QRRQueryGrouping",
+	"type" : "normal"
+}

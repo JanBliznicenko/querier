@@ -1,0 +1,3 @@
+constants
+functionName
+	self subclassResponsibility

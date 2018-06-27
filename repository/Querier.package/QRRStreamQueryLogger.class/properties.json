@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "QRRQueryLogger",
+	"category" : "Querier-Logging",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"stream",
+		"prefix",
+		"suffix"
+	],
+	"name" : "QRRStreamQueryLogger",
+	"type" : "normal"
+}

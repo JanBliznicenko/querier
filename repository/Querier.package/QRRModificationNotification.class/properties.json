@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "Notification",
+	"category" : "Querier-Queries-Expressions",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"column",
+		"value"
+	],
+	"name" : "QRRModificationNotification",
+	"type" : "normal"
+}

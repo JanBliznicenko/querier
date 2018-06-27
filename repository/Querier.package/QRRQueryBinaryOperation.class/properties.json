@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "QRRQueryOperation",
+	"category" : "Querier-Queries-Expressions",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"left",
+		"right"
+	],
+	"name" : "QRRQueryBinaryOperation",
+	"type" : "normal"
+}

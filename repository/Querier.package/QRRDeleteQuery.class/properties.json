@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "QRRQuery",
+	"category" : "Querier-Queries",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"condition"
+	],
+	"name" : "QRRDeleteQuery",
+	"type" : "normal"
+}

@@ -1,0 +1,10 @@
+SystemOrganization addCategory: #Querier!
+SystemOrganization addCategory: 'Querier-Cache'!
+SystemOrganization addCategory: 'Querier-Core'!
+SystemOrganization addCategory: 'Querier-Drivers'!
+SystemOrganization addCategory: 'Querier-Logging'!
+SystemOrganization addCategory: 'Querier-Queries'!
+SystemOrganization addCategory: 'Querier-Queries-Expressions'!
+SystemOrganization addCategory: 'Querier-Queries-Visitors'!
+SystemOrganization addCategory: 'Querier-Result'!
+SystemOrganization addCategory: 'Querier-Structure'!

@@ -1,0 +1,3 @@
+api
+remove
+	^ self delete

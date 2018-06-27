@@ -1,0 +1,24 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "Querier-Result",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"querier",
+		"query",
+		"rows",
+		"rowEntities",
+		"entityClass",
+		"executed",
+		"position",
+		"primaryKeyColumn",
+		"structure",
+		"rowMapping",
+		"columns",
+		"usedTables"
+	],
+	"name" : "QRRResult",
+	"type" : "normal"
+}

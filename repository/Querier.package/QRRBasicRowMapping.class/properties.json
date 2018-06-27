@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "QRRRowMapping",
+	"category" : "Querier-Structure",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "QRRBasicRowMapping",
+	"type" : "normal"
+}
