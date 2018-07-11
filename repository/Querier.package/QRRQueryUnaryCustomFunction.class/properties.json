@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "QRRQueryUnaryFunction",
+	"category" : "Querier-Queries-Expressions",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"functionName"
+	],
+	"name" : "QRRQueryUnaryCustomFunction",
+	"type" : "normal"
+}
