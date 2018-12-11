@@ -7,6 +7,6 @@ baseline: spec
 				project: 'PostgresV2'
 					with: [ spec
 						className: #ConfigurationOfPostgresV2;
-						repository: 'http://smalltalkhub.com/mc/PharoExtras/PostgresV2/main/' ];
+						repository: 'github://JanBliznicenko/PostgresV2' ];
 				package: 'Querier' with: [ spec requires: #('PostgresV2') ];
 				package: 'Querier-PostgreSQL' with: [ spec requires: #('Querier') ] ]
