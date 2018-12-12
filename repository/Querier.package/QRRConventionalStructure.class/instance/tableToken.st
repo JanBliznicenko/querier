@@ -1,3 +1,0 @@
-constants
-tableToken
-	^ '{' , self tableTokenName , '}'

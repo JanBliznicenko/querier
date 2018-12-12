@@ -1,3 +1,0 @@
-private
-executeAndFetchResult: queryString
-	self subclassResponsibility

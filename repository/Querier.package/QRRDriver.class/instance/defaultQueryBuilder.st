@@ -1,3 +1,0 @@
-accessing
-defaultQueryBuilder
-	self subclassResponsibility

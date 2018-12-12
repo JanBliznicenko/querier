@@ -1,3 +1,0 @@
-accessing
-defaultLogger
-	^ QRRNullQueryLogger new

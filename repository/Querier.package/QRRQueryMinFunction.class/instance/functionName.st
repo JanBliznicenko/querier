@@ -1,3 +1,0 @@
-constants
-functionName
-	^ #min

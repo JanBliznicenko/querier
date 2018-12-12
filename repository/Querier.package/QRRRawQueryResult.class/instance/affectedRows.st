@@ -1,3 +1,0 @@
-accessing
-affectedRows
-	self subclassResponsibility

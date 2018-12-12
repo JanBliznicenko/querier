@@ -1,3 +1,0 @@
-*Querier
-asSqlValue
-	^ self yyyymmdd

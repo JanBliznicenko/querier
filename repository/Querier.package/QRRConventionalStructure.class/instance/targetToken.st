@@ -1,3 +1,0 @@
-constants
-targetToken
-	^ '{' , self targetTokenName , '}'
