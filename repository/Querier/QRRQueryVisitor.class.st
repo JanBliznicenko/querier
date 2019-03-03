@@ -154,6 +154,11 @@ QRRQueryVisitor >> visitQueryLessThanOrEqualComparison: aQueryOperation with: an
 	^ self visitQueryComparison: aQueryOperation with: anObject
 ]
 
+{ #category : #'visiting - operations' }
+QRRQueryVisitor >> visitQueryLikeOperation: aQueryOperation with: anObject [
+	^ self visitQueryBinaryOperation: aQueryOperation with: anObject
+]
+
 { #category : #'visiting - query parts' }
 QRRQueryVisitor >> visitQueryLimit: aQueryLimit with: anObject [
 	^ self visitQueryPart: aQueryLimit with: anObject

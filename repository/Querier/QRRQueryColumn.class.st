@@ -146,8 +146,18 @@ QRRQueryColumn >> ifMoreThan: anInteger identifiersDo: aBlock [
 ]
 
 { #category : #'expression building' }
+QRRQueryColumn >> ilike: aString [
+	^ QRRQueryILikeOperation left: self right: aString asQuerierExpression
+]
+
+{ #category : #'expression building' }
 QRRQueryColumn >> in: anObject [
 	^ QRRQueryInclusionOperation left: self right: anObject asQuerierExpression
+]
+
+{ #category : #'expression building' }
+QRRQueryColumn >> like: aString [
+	^ QRRQueryLikeOperation left: self right: aString asQuerierExpression
 ]
 
 { #category : #'expression building' }

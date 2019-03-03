@@ -97,8 +97,18 @@ QRRQueryExpression >> convertToConstant: anObject andSend: selector [
 ]
 
 { #category : #'expression building' }
+QRRQueryExpression >> ilike: aString [
+	^ QRRQueryILikeOperation left: self right: aString asQuerierExpression
+]
+
+{ #category : #'expression building' }
 QRRQueryExpression >> in: anObject [
 	^ QRRQueryInclusionOperation left: self right: anObject asQuerierExpression
+]
+
+{ #category : #'expression building' }
+QRRQueryExpression >> like: aString [
+	^ QRRQueryLikeOperation left: self right: aString asQuerierExpression
 ]
 
 { #category : #'expression building' }

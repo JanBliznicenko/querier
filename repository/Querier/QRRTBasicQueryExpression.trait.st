@@ -104,6 +104,11 @@ QRRTBasicQueryExpression >> exists: anObject [
 ]
 
 { #category : #'expression building' }
+QRRTBasicQueryExpression >> ilike: aString [
+	^ QRRQueryILikeOperation left: self right: aString asQuerierExpression
+]
+
+{ #category : #'expression building' }
 QRRTBasicQueryExpression >> in: anObject [
 	^ QRRQueryInclusionOperation left: self right: anObject asQuerierExpression
 ]
@@ -126,6 +131,11 @@ QRRTBasicQueryExpression >> isNotNull [
 { #category : #'expression building' }
 QRRTBasicQueryExpression >> isNull [
 	^ QRRQueryIsNullOperation expression: self
+]
+
+{ #category : #'expression building' }
+QRRTBasicQueryExpression >> like: aString [
+	^ QRRQueryLikeOperation left: self right: aString asQuerierExpression
 ]
 
 { #category : #'expression building' }
