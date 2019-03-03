@@ -38,6 +38,11 @@ QRRResult >> accept: aVisitor with: anObject [
 	^ aVisitor visit: query with: anObject
 ]
 
+{ #category : #'api - columns' }
+QRRResult >> addColumnIdentifiedBy: aCollectionOfSymbols [
+	query addColumn: (QRRQueryColumn identifiers: aCollectionOfSymbols)
+]
+
 { #category : #'private - conditions' }
 QRRResult >> addCondition: aCondition [
 
