@@ -312,7 +312,7 @@ QRRPostgreSqlQueryBuilder >> visitQueryIsNotNullOperation: aQueryOperation with:
 { #category : #'visiting - operations' }
 QRRPostgreSqlQueryBuilder >> visitQueryIsNullOperation: aQueryOperation with: aStream [
 	self visit: aQueryOperation expression with: aStream.
-	aStream nextPutAll: 'IS NULL '
+	aStream nextPutAll: ' IS NULL '
 ]
 
 { #category : #'visiting - query parts' }
