@@ -35,7 +35,13 @@ QRRTBasicQueryExpression >> <= anObject [
 
 { #category : #'expression building' }
 QRRTBasicQueryExpression >> = anObject [
-	^ QRRQueryEqualComparison left: self right: anObject asQuerierExpression
+	| object |
+	object := anObject asQuerierExpression.
+	object asQuerierExpression value = 'NULL'
+		ifTrue: [ ^ QRRQueryIsNullOperation expression: self ].
+	^ QRRQueryEqualComparison
+		left: self
+		right: anObject asQuerierExpression
 ]
 
 { #category : #'expression building' }
@@ -91,6 +97,13 @@ QRRTBasicQueryExpression >> asQuerierExpression [
 { #category : #'expression building' }
 QRRTBasicQueryExpression >> asUppercase [
 	self inFunction: #upper
+]
+
+{ #category : #'expression building' }
+QRRTBasicQueryExpression >> between: anObject and: anotherObject [
+	^ QRRQueryAndCondition
+		with: self >= anObject
+		with: self <= anotherObject
 ]
 
 { #category : #converting }
@@ -154,6 +167,17 @@ QRRTBasicQueryExpression >> notExists: anObject [
 ]
 
 { #category : #'expression building' }
+QRRTBasicQueryExpression >> notIn: anObject [
+	^ QRRQueryNonInclusionOperation left: self right: anObject asQuerierExpression
+]
+
+{ #category : #'expression building' }
 QRRTBasicQueryExpression >> ~= anObject [
-	^ QRRQueryNotEqualComparison left: self right: anObject asQuerierExpression
+	| object |
+	object := anObject asQuerierExpression.
+	object asQuerierExpression value = 'NULL'
+		ifTrue: [ ^ QRRQueryIsNotNullOperation expression: self ].
+	^ QRRQueryNotEqualComparison
+		left: self
+		right: anObject asQuerierExpression
 ]

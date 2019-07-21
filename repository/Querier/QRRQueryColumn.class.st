@@ -20,94 +20,14 @@ QRRQueryColumn class >> identifiers: aCollection [
 		qrrSetIdentifiers: aCollection
 ]
 
-{ #category : #'expression building' }
-QRRQueryColumn >> * anObject [
-	^ QRRQueryMultiplicationOperation left: self right: anObject asQuerierExpression
-]
-
-{ #category : #'expression building' }
-QRRQueryColumn >> + anObject [
-	^ QRRQueryAdditionOperation left: self right: anObject asQuerierExpression
-]
-
-{ #category : #'expression building' }
-QRRQueryColumn >> - anObject [
-	^ QRRQuerySubtractionOperation left: self right: anObject asQuerierExpression
-]
-
-{ #category : #'expression building' }
-QRRQueryColumn >> / anObject [
-	^ QRRQueryDivisionOperation left: self right: anObject asQuerierExpression
-]
-
-{ #category : #'expression building' }
-QRRQueryColumn >> < anObject [
-	^ QRRQueryLessThanComparison left: self right: anObject asQuerierExpression
-]
-
-{ #category : #'expression building' }
-QRRQueryColumn >> <= anObject [
-	^ QRRQueryLessThanOrEqualComparison left: self right: anObject asQuerierExpression
-]
-
-{ #category : #'expression building' }
-QRRQueryColumn >> = anObject [
-	^ QRRQueryEqualComparison left: self right: anObject asQuerierExpression
-]
-
-{ #category : #'expression building' }
-QRRQueryColumn >> > anObject [
-	^ QRRQueryMoreThanComparison left: self right: anObject asQuerierExpression
-]
-
-{ #category : #'expression building' }
-QRRQueryColumn >> >= anObject [
-	^ QRRQueryMoreThanOrEqualComparison left: self right: anObject asQuerierExpression
-]
-
 { #category : #visiting }
 QRRQueryColumn >> accept: aVisitor with: anObject [
 	^ aVisitor visitQueryColumn: self with: anObject
 ]
 
 { #category : #converting }
-QRRQueryColumn >> adaptToFloat: aNumber andCompare: selector [
-	^ self convertToConstant: aNumber andSend: selector
-]
-
-{ #category : #converting }
-QRRQueryColumn >> adaptToFloat: aNumber andSend: selector [
-	^ self convertToConstant: aNumber andSend: selector
-]
-
-{ #category : #converting }
-QRRQueryColumn >> adaptToFraction: aNumber andCompare: selector [
-	^ self convertToConstant: aNumber andSend: selector
-]
-
-{ #category : #converting }
-QRRQueryColumn >> adaptToFraction: aNumber andSend: selector [
-	^ self convertToConstant: aNumber andSend: selector
-]
-
-{ #category : #converting }
-QRRQueryColumn >> adaptToInteger: aNumber andCompare: selector [
-	^ self convertToConstant: aNumber andSend: selector
-]
-
-{ #category : #converting }
-QRRQueryColumn >> adaptToInteger: aNumber andSend: selector [
-	^ self convertToConstant: aNumber andSend: selector
-]
-
-{ #category : #converting }
 QRRQueryColumn >> asExternalColumn [
 	^ QRRQueryExternalColumn identifiers: identifiers
-]
-
-{ #category : #converting }
-QRRQueryColumn >> asQuerierExpression [
-	^ self
 ]
 
 { #category : #'expression building' }
@@ -118,11 +38,6 @@ QRRQueryColumn >> at: key [
 { #category : #'expression building' }
 QRRQueryColumn >> at: key put: value [
 	^ self error: 'This column is not mutable.'
-]
-
-{ #category : #converting }
-QRRQueryColumn >> convertToConstant: anObject andSend: selector [
-	^ anObject asQuerierExpression perform: selector with: self
 ]
 
 { #category : #'expression building' }
@@ -145,26 +60,6 @@ QRRQueryColumn >> ifMoreThan: anInteger identifiersDo: aBlock [
 		ifTrue: aBlock
 ]
 
-{ #category : #'expression building' }
-QRRQueryColumn >> ilike: aString [
-	^ QRRQueryILikeOperation left: self right: aString asQuerierExpression
-]
-
-{ #category : #'expression building' }
-QRRQueryColumn >> in: anObject [
-	^ QRRQueryInclusionOperation left: self right: anObject asQuerierExpression
-]
-
-{ #category : #'expression building' }
-QRRQueryColumn >> like: aString [
-	^ QRRQueryLikeOperation left: self right: aString asQuerierExpression
-]
-
-{ #category : #'expression building' }
-QRRQueryColumn >> notIn: anObject [
-	^ QRRQueryNonInclusionOperation left: self right: anObject asQuerierExpression
-]
-
 { #category : #accessing }
 QRRQueryColumn >> qrrGetIdentifiers [
 	"Named like this so it does not collide with column names (see #doesNotUnderstand:)."
@@ -175,9 +70,4 @@ QRRQueryColumn >> qrrGetIdentifiers [
 QRRQueryColumn >> qrrSetIdentifiers: aCollection [
 	"Named like this so it does not collide with column names (see #doesNotUnderstand:)."
 	identifiers := aCollection
-]
-
-{ #category : #'expression building' }
-QRRQueryColumn >> ~= anObject [
-	^ QRRQueryNotEqualComparison left: self right: anObject asQuerierExpression
 ]
