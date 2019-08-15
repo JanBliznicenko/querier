@@ -427,7 +427,7 @@ QRRPostgreSqlQueryBuilder >> visitQueryStringConstant: aQueryConstant with: aStr
 { #category : #'visiting - queries' }
 QRRPostgreSqlQueryBuilder >> visitSelectQuery: aQuery with: aStream [
 	| hasColumns |
-	aStream nextPutAll: 'SELECT DISTINCT '.
+	aStream nextPutAll: 'SELECT '.
 	hasColumns := false.
 	aQuery
 		columnsDo: [ :column | 
