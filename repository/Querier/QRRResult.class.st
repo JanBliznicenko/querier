@@ -15,7 +15,7 @@ Class {
 		'columns',
 		'usedTables'
 	],
-	#category : 'Querier-Result'
+	#category : #'Querier-Result'
 }
 
 { #category : #'instance creation' }
@@ -343,15 +343,25 @@ QRRResult >> createJoinForTables: aCollection [
 
 { #category : #accessing }
 QRRResult >> createJoinFrom: sourceTable column: sourceColumn to: targetTable column: targetColumn [
+	self
+		createJoinFrom: sourceTable
+		column: sourceColumn
+		to: targetTable
+		column: targetColumn
+		alias: targetTable
+]
+
+{ #category : #accessing }
+QRRResult >> createJoinFrom: sourceTable column: sourceColumn to: targetTable column: targetColumn alias: anAlias [
 	| join |
 	join := QRRQueryJoin new
 		table: targetTable;
-		alias: targetTable;
+		alias: anAlias;
 		condition:
 			(self
 				createJoinConditionFrom: sourceTable
 				column: sourceColumn
-				to: targetTable
+				to: anAlias
 				column: targetColumn);
 		yourself.
 	query addJoin: join
