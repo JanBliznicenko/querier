@@ -52,6 +52,11 @@ QRRPostgreSql3Driver >> execute: queryString rowsDo: aBlock [
 		QRRPostgreSql3Error signal:
 			'P3Error: ' , p3Error messageText asString ].
 
+	result descriptions ifNil: [ 
+		QRRPostgreSql3Error signal: (String streamContents: [ :s | 
+				 s nextPutAll: 'P3Result without descriptions: '.
+				 STON put: result onStream: s ]) ].
+
 	columns := result descriptions collect: [ :each | 
 		           each fieldName asSymbol ].
 	result data do: [ :data | 
