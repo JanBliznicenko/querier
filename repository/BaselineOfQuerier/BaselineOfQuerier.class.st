@@ -20,5 +20,5 @@ BaselineOfQuerier >> baseline: spec [
 			with: [ spec requires: #( 'P3' 'Querier' ) ];
 			group: 'v2' with: #( 'Querier-PostgreSQLv2' );
 			group: 'v3' with: #( 'Querier-PostgreSQLv3' );
-			group: 'default' with: #( 'v3' ) ]
+			group: 'default' with: #( 'v2' ) ]
 ]
