@@ -1,5 +1,5 @@
 Class {
 	#name : #QRRPostgreSql3Error,
-	#superclass : #Error,
+	#superclass : #QRRPostgreSqlError,
 	#category : #'Querier-PostgreSQLv3'
 }
