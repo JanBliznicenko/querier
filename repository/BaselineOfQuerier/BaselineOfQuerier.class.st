@@ -10,7 +10,7 @@ BaselineOfQuerier >> baseline: spec [
 	<baseline>
 	spec for: #common do: [ 
 		spec
-			project: 'PostgresV2'
+			baseline: 'PostgresV2'
 			with: [ spec repository: 'github://JanBliznicenko/PostgresV2' ];
 			baseline: 'P3' with: [ spec repository: 'github://svenvc/P3' ];
 			package: 'Querier';
