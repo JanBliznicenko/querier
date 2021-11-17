@@ -796,7 +796,15 @@ QRRResult >> offset: anInteger [
 
 { #category : #'api - ordering' }
 QRRResult >> orderAscendinglyBy: aSymbolOrBlock [
-	query ordering addAscendingColumn: (self createOrderColumnFrom: aSymbolOrBlock)
+
+	self orderAscendinglyByColumn:
+		(self createOrderColumnFrom: aSymbolOrBlock)
+]
+
+{ #category : #'api - ordering' }
+QRRResult >> orderAscendinglyByColumn: aColumn [
+
+	query ordering addAscendingColumn: aColumn
 ]
 
 { #category : #'api - ordering' }
@@ -805,8 +813,22 @@ QRRResult >> orderBy: aSymbolOrBlock [
 ]
 
 { #category : #'api - ordering' }
+QRRResult >> orderByColumn: aColumn [
+
+	self orderAscendinglyByColumn: aColumn
+]
+
+{ #category : #'api - ordering' }
 QRRResult >> orderDescendinglyBy: aSymbolOrBlock [
-	query ordering addDescendingColumn: (self createOrderColumnFrom: aSymbolOrBlock)
+
+	self orderDescendinglyByColumn:
+		(self createOrderColumnFrom: aSymbolOrBlock)
+]
+
+{ #category : #'api - ordering' }
+QRRResult >> orderDescendinglyByColumn: aColumn [
+
+	query ordering addDescendingColumn: aColumn
 ]
 
 { #category : #private }
