@@ -2,20 +2,22 @@ Class {
 	#name : #QRRPostgreSqlDriver,
 	#superclass : #QRRDriver,
 	#instVars : [
-		'connection'
+		'client',
+		'mutex'
 	],
-	#category : 'Querier-PostgreSQL'
+	#category : #'Querier-PostgreSQL'
 }
 
 { #category : #'instance creation' }
-QRRPostgreSqlDriver class >> connection: aPgConnection [
-	^ self new
-		connection: aPgConnection
+QRRPostgreSqlDriver class >> client: aP3Client [
+
+	^ self new client: aP3Client
 ]
 
 { #category : #private }
-QRRPostgreSqlDriver >> connection: aPgConnection [
-	connection := aPgConnection
+QRRPostgreSqlDriver >> client: aP3Client [
+
+	client := aP3Client
 ]
 
 { #category : #accessing }
@@ -25,37 +27,47 @@ QRRPostgreSqlDriver >> defaultQueryBuilder [
 
 { #category : #private }
 QRRPostgreSqlDriver >> ensureConnection [
-	connection isConnected ifFalse: [
-		[ connection terminate ]
-			on: Error do: [ :error | error return ].
-		connection initialize.
-		[ connection startup ]
-			on: ConnectionTimedOut do: [ :error |
-				QRRPostgreSqlError signal: 'Connection timed out.' ] ]
+
+	client isConnected ifTrue: [ ^ self ].
+	[ client close ]
+		on: Error
+		do: [ :error | error return ].
+	client initialize.
+	[ client open ]
+		on: ConnectionTimedOut
+		do: [ :error | QRRPostgreSqlError signal: 'Connection timed out.' ]
 ]
 
 { #category : #'lazy execution' }
 QRRPostgreSqlDriver >> execute: queryString rowsDo: aBlock [
-	| columns |
-	
-	columns := nil.
-	
-	self ensureConnection.
-	
-	connection
-		execute: queryString
-		withRowBlock: [ :description :data |
-			| dictionary |
-			
-			columns ifNil: [
-				columns := description columnDescriptions collect: [ :each | each fieldName asSymbol ] ].
-			
-			dictionary := Dictionary new.
-			columns withIndexDo: [ :column :index |
-				dictionary at: column put: (data at: index) ].
-			
-			aBlock value: dictionary ].
-	
+
+	| p3Error result columns |
+	p3Error := nil.
+
+	result := mutex critical: [ 
+		          self ensureConnection.
+		          [ client query: queryString ]
+			          on: P3Error
+			          do: [ :error | p3Error := error ] ].
+
+	p3Error ifNotNil: [ 
+		QRRPostgreSqlError signal:
+			'P3Error: ' , p3Error messageText asString ].
+
+	result descriptions ifNil: [ 
+		QRRPostgreSqlError signal: (String streamContents: [ :s | 
+				 s nextPutAll: 'P3Result without descriptions: '.
+				 STON put: result onStream: s ]) ].
+
+	columns := result descriptions collect: [ :each | 
+		           each fieldName asSymbol ].
+	result data do: [ :data | 
+		| dictionary |
+		dictionary := Dictionary new.
+		columns withIndexDo: [ :column :index | 
+			dictionary at: column put: (data at: index) ].
+		aBlock value: dictionary ].
+
 	^ columns
 ]
 
@@ -66,16 +78,26 @@ QRRPostgreSqlDriver >> executeAndFetchResult: queryString [
 
 { #category : #'lazy execution' }
 QRRPostgreSqlDriver >> executeAndReturnAffectedRows: queryString [
-	| result |
-	
-	self ensureConnection.
-	
-	result := connection execute: queryString.
-	
-	result errorResponse ifNotNil: [ :error |
-		QRRPostgreSqlError signal: error value ].
-	
-	result lastResultSet
-		ifNil: [ QRRPostgreSqlError signal: 'No result set.' ]
-		ifNotNil: [ ^ result lastResultSet completedResponse value asInteger ]
+
+	| result p3Error |
+	p3Error := nil.
+
+	result := mutex critical: [ 
+		          self ensureConnection.
+		          [ client execute: queryString ]
+			          on: P3Error
+			          do: [ :error | p3Error := error ] ].
+
+	p3Error ifNotNil: [ 
+		QRRPostgreSqlError signal:
+			'P3Error: ' , p3Error messageText asString ].
+
+	^ (result splitOn: Character space) last asInteger
+]
+
+{ #category : #initialization }
+QRRPostgreSqlDriver >> initialize [
+
+	super initialize.
+	mutex := Mutex new
 ]
