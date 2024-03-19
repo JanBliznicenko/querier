@@ -1,6 +1,8 @@
 Class {
 	#name : #QRRQueryLikeOperation,
 	#superclass : #QRRQueryBinaryOperation,
+	#traits : 'QRRTQueryBooleanOperation',
+	#classTraits : 'QRRTQueryBooleanOperation classTrait',
 	#category : #'Querier-Queries-Expressions'
 }
 

@@ -1,10 +1,12 @@
 Class {
 	#name : #QRRQueryCondition,
 	#superclass : #QRRQueryOperation,
+	#traits : 'QRRTQueryBooleanOperation',
+	#classTraits : 'QRRTQueryBooleanOperation classTrait',
 	#instVars : [
 		'conditions'
 	],
-	#category : 'Querier-Queries-Expressions'
+	#category : #'Querier-Queries-Expressions'
 }
 
 { #category : #'instance creation' }

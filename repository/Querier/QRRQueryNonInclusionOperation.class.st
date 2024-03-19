@@ -1,7 +1,9 @@
 Class {
 	#name : #QRRQueryNonInclusionOperation,
 	#superclass : #QRRQueryBinaryOperation,
-	#category : 'Querier-Queries-Expressions'
+	#traits : 'QRRTQueryBooleanOperation',
+	#classTraits : 'QRRTQueryBooleanOperation classTrait',
+	#category : #'Querier-Queries-Expressions'
 }
 
 { #category : #visiting }
