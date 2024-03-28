@@ -32,7 +32,6 @@ QRRPostgreSqlDriver >> ensureConnection [
 	[ client close ]
 		on: Error
 		do: [ :error | error return ].
-	client initialize.
 	[ client open ]
 		on: ConnectionTimedOut
 		do: [ :error | QRRPostgreSqlError signal: 'Connection timed out.' ]
