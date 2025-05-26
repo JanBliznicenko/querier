@@ -1,1 +1,1 @@
-Package { #name : #BaselineOfQuerier }
+Package { #name : 'BaselineOfQuerier' }
