@@ -1,31 +1,32 @@
 Class {
-	#name : #QRRPostgreSqlDriver,
-	#superclass : #QRRDriver,
+	#name : 'QRRPostgreSqlDriver',
+	#superclass : 'QRRDriver',
 	#instVars : [
 		'client',
 		'mutex'
 	],
-	#category : #'Querier-PostgreSQL'
+	#category : 'Querier-PostgreSQL',
+	#package : 'Querier-PostgreSQL'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 QRRPostgreSqlDriver class >> client: aP3Client [
 
 	^ self new client: aP3Client
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 QRRPostgreSqlDriver >> client: aP3Client [
 
 	client := aP3Client
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 QRRPostgreSqlDriver >> defaultQueryBuilder [
 	^ QRRPostgreSqlQueryBuilder new
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 QRRPostgreSqlDriver >> ensureConnection [
 
 	client isConnected ifTrue: [ ^ self ].
@@ -37,7 +38,7 @@ QRRPostgreSqlDriver >> ensureConnection [
 		do: [ :error | QRRPostgreSqlError signal: 'Connection timed out.' ]
 ]
 
-{ #category : #'lazy execution' }
+{ #category : 'lazy execution' }
 QRRPostgreSqlDriver >> execute: queryString rowsDo: aBlock [
 
 	| p3Error result columns |
@@ -70,12 +71,12 @@ QRRPostgreSqlDriver >> execute: queryString rowsDo: aBlock [
 	^ columns
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 QRRPostgreSqlDriver >> executeAndFetchResult: queryString [
 	^ QRRPostgreSqlQueryResult driver: self query: queryString
 ]
 
-{ #category : #'lazy execution' }
+{ #category : 'lazy execution' }
 QRRPostgreSqlDriver >> executeAndReturnAffectedRows: queryString [
 
 	| result p3Error |
@@ -94,7 +95,7 @@ QRRPostgreSqlDriver >> executeAndReturnAffectedRows: queryString [
 	^ (result splitOn: Character space) last asInteger
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 QRRPostgreSqlDriver >> initialize [
 
 	super initialize.

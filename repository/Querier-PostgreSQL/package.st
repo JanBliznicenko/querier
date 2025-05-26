@@ -1,1 +1,1 @@
-Package { #name : #'Querier-PostgreSQL' }
+Package { #name : 'Querier-PostgreSQL' }

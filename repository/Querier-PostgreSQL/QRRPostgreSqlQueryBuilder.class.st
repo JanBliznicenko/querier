@@ -1,10 +1,11 @@
 Class {
-	#name : #QRRPostgreSqlQueryBuilder,
-	#superclass : #QRRQueryBuilder,
-	#category : 'Querier-PostgreSQL'
+	#name : 'QRRPostgreSqlQueryBuilder',
+	#superclass : 'QRRQueryBuilder',
+	#category : 'Querier-PostgreSQL',
+	#package : 'Querier-PostgreSQL'
 }
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 QRRPostgreSqlQueryBuilder >> binaryOperationSymbol: aSymbol [
 	^ {
 			#~= -> #!=.
@@ -14,7 +15,7 @@ QRRPostgreSqlQueryBuilder >> binaryOperationSymbol: aSymbol [
 			ifAbsent: [ aSymbol ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 QRRPostgreSqlQueryBuilder >> buildStringFrom: aQuery [
 	^ String streamContents: [ :stream |
 			| streamWrapper |
@@ -24,7 +25,7 @@ QRRPostgreSqlQueryBuilder >> buildStringFrom: aQuery [
 			self visit: aQuery with: streamWrapper ]
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 QRRPostgreSqlQueryBuilder >> enclose: aString in: enclosingChar [
 	^ String streamContents: [ :stream |
 			stream nextPut: enclosingChar.
@@ -35,17 +36,17 @@ QRRPostgreSqlQueryBuilder >> enclose: aString in: enclosingChar [
 			stream nextPut: enclosingChar ]
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 QRRPostgreSqlQueryBuilder >> escapeIdentifier: aString [
 	^ self enclose: aString in: self identifierEnclosingCharacter.
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 QRRPostgreSqlQueryBuilder >> escapeValue: aString [
 	^ self enclose: aString in: self valueEnclosingCharacter.
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 QRRPostgreSqlQueryBuilder >> functionName: aSymbol [
 	^ {
 			#average -> #avg
@@ -54,31 +55,31 @@ QRRPostgreSqlQueryBuilder >> functionName: aSymbol [
 			ifAbsent: [ aSymbol ]
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 QRRPostgreSqlQueryBuilder >> identifierEnclosingCharacter [
 	^ $"
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 QRRPostgreSqlQueryBuilder >> keywordForOrderDirection: aSymbol [
 	^ aSymbol = #descending
 			ifTrue: 'DESC'
 			ifFalse: 'ASC'
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 QRRPostgreSqlQueryBuilder >> numberConstantFor: anObject [
 	^ anObject printString
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 QRRPostgreSqlQueryBuilder >> parenthesized: aBlock on: aStream [
 	aStream nextPut: $(.
 	aBlock value.
 	aStream nextPut: $)
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 QRRPostgreSqlQueryBuilder >> printIfNotNil: anObject precededBy: aString on: aStream [
 	anObject ifNil: [ ^ self ].
 	
@@ -87,17 +88,17 @@ QRRPostgreSqlQueryBuilder >> printIfNotNil: anObject precededBy: aString on: aSt
 		nextPutAll: anObject printString
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 QRRPostgreSqlQueryBuilder >> stringConstantFor: aString [
 	^ self escapeValue: aString
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 QRRPostgreSqlQueryBuilder >> valueEnclosingCharacter [
 	^ $'
 ]
 
-{ #category : #'visiting - conditions' }
+{ #category : 'visiting - conditions' }
 QRRPostgreSqlQueryBuilder >> visitCondition: aCondition precededBy: aString with: aStream [
 	aCondition isEmpty ifTrue: [ ^ self ].
 	
@@ -105,7 +106,7 @@ QRRPostgreSqlQueryBuilder >> visitCondition: aCondition precededBy: aString with
 	self visit: aCondition with: aStream
 ]
 
-{ #category : #'visiting - queries' }
+{ #category : 'visiting - queries' }
 QRRPostgreSqlQueryBuilder >> visitDeleteQuery: aQuery with: aStream [
 	aStream singleTableQuery: true.
 	
@@ -116,7 +117,7 @@ QRRPostgreSqlQueryBuilder >> visitDeleteQuery: aQuery with: aStream [
 	self visitWhereCondition: aQuery condition with: aStream
 ]
 
-{ #category : #'visiting - queries' }
+{ #category : 'visiting - queries' }
 QRRPostgreSqlQueryBuilder >> visitInsertQuery: aQuery with: aStream [
 	aStream singleTableQuery: true.
 	
@@ -150,19 +151,19 @@ QRRPostgreSqlQueryBuilder >> visitInsertQuery: aQuery with: aStream [
 			nextPutAll: 'RETURNING *' ]
 ]
 
-{ #category : #'visiting - conditions' }
+{ #category : 'visiting - conditions' }
 QRRPostgreSqlQueryBuilder >> visitQueryAndCondition: aQueryCondition with: aStream [
 	self visitQueryCondition: aQueryCondition
 		separatedBy: ' AND '
 		with: aStream
 ]
 
-{ #category : #'visiting - operations' }
+{ #category : 'visiting - operations' }
 QRRPostgreSqlQueryBuilder >> visitQueryAssignmentOperation: aQueryOperation with: aStream [
 	self visitQueryBinaryOperationWithoutParentheses: aQueryOperation with: aStream
 ]
 
-{ #category : #'visiting - operations' }
+{ #category : 'visiting - operations' }
 QRRPostgreSqlQueryBuilder >> visitQueryBinaryOperation: aQueryOperation with: aStream [
 	self
 		parenthesized: [
@@ -170,7 +171,7 @@ QRRPostgreSqlQueryBuilder >> visitQueryBinaryOperation: aQueryOperation with: aS
 		on: aStream
 ]
 
-{ #category : #'visiting - operations' }
+{ #category : 'visiting - operations' }
 QRRPostgreSqlQueryBuilder >> visitQueryBinaryOperationWithoutParentheses: aQueryOperation with: aStream [
 	self visit: aQueryOperation leftExpression with: aStream.
 	aStream
@@ -180,7 +181,7 @@ QRRPostgreSqlQueryBuilder >> visitQueryBinaryOperationWithoutParentheses: aQuery
 	self visit: aQueryOperation rightExpression with: aStream
 ]
 
-{ #category : #'visiting - expressions' }
+{ #category : 'visiting - expressions' }
 QRRPostgreSqlQueryBuilder >> visitQueryCollectionConstant: aQueryConstant with: aStream [
 	aStream nextPut: $(.
 	
@@ -193,7 +194,7 @@ QRRPostgreSqlQueryBuilder >> visitQueryCollectionConstant: aQueryConstant with: 
 	aStream nextPut: $)
 ]
 
-{ #category : #'visiting - expressions' }
+{ #category : 'visiting - expressions' }
 QRRPostgreSqlQueryBuilder >> visitQueryColumn: aQueryColumn with: aStream [
 	| hideFirst |
 	
@@ -209,7 +210,7 @@ QRRPostgreSqlQueryBuilder >> visitQueryColumn: aQueryColumn with: aStream [
 				ifFalse: [ aStream nextPut: $. ] ]
 ]
 
-{ #category : #'visiting - conditions' }
+{ #category : 'visiting - conditions' }
 QRRPostgreSqlQueryBuilder >> visitQueryCondition: aQueryCondition separatedBy: separatorString with: aStream [
 	"If there are no conditions, pass a placeholder (always-true expression)."
 	aQueryCondition isEmpty
@@ -227,14 +228,14 @@ QRRPostgreSqlQueryBuilder >> visitQueryCondition: aQueryCondition separatedBy: s
 		on: aStream
 ]
 
-{ #category : #'visiting - operations' }
+{ #category : 'visiting - operations' }
 QRRPostgreSqlQueryBuilder >> visitQueryDistinctOperation: aQueryOperation with: aStream [
 	aStream nextPutAll: 'DISTINCT '.
 	
 	self visit: aQueryOperation expression with: aStream
 ]
 
-{ #category : #'visiting - operations' }
+{ #category : 'visiting - operations' }
 QRRPostgreSqlQueryBuilder >> visitQueryExistenceOperation: aQueryOperation with: aStream [
 	self
 		parenthesized: [
@@ -244,7 +245,7 @@ QRRPostgreSqlQueryBuilder >> visitQueryExistenceOperation: aQueryOperation with:
 		on: aStream
 ]
 
-{ #category : #'visiting - functions' }
+{ #category : 'visiting - functions' }
 QRRPostgreSqlQueryBuilder >> visitQueryFunction: aQueryFunction with: aStream [
 	aStream nextPutAll: (self functionName: aQueryFunction functionName) asUppercase.
 	
@@ -259,7 +260,7 @@ QRRPostgreSqlQueryBuilder >> visitQueryFunction: aQueryFunction with: aStream [
 	aStream nextPut: $)
 ]
 
-{ #category : #'visiting - query parts' }
+{ #category : 'visiting - query parts' }
 QRRPostgreSqlQueryBuilder >> visitQueryGrouping: aQueryGrouping with: aStream [
 	aQueryGrouping isEmpty ifTrue: [
 		^ self ].
@@ -277,12 +278,12 @@ QRRPostgreSqlQueryBuilder >> visitQueryGrouping: aQueryGrouping with: aStream [
 		with: aStream
 ]
 
-{ #category : #'visiting - expressions' }
+{ #category : 'visiting - expressions' }
 QRRPostgreSqlQueryBuilder >> visitQueryIdentifier: aQueryIdentifier with: aStream [
 	aStream nextPutAll: (self escapeIdentifier: aQueryIdentifier value)
 ]
 
-{ #category : #'visiting - operations' }
+{ #category : 'visiting - operations' }
 QRRPostgreSqlQueryBuilder >> visitQueryInclusionOperation: aQueryOperation with: aStream [
 	self
 		parenthesized: [
@@ -294,19 +295,19 @@ QRRPostgreSqlQueryBuilder >> visitQueryInclusionOperation: aQueryOperation with:
 		on: aStream
 ]
 
-{ #category : #'visiting - operations' }
+{ #category : 'visiting - operations' }
 QRRPostgreSqlQueryBuilder >> visitQueryIsNotNullOperation: aQueryOperation with: aStream [
 	self visit: aQueryOperation expression with: aStream.
 	aStream nextPutAll: ' IS NOT NULL '
 ]
 
-{ #category : #'visiting - operations' }
+{ #category : 'visiting - operations' }
 QRRPostgreSqlQueryBuilder >> visitQueryIsNullOperation: aQueryOperation with: aStream [
 	self visit: aQueryOperation expression with: aStream.
 	aStream nextPutAll: ' IS NULL '
 ]
 
-{ #category : #'visiting - query parts' }
+{ #category : 'visiting - query parts' }
 QRRPostgreSqlQueryBuilder >> visitQueryJoin: aQueryJoin with: aStream [
 	aStream
 		cr;
@@ -323,13 +324,13 @@ QRRPostgreSqlQueryBuilder >> visitQueryJoin: aQueryJoin with: aStream [
 	self visit: aQueryJoin condition with: aStream
 ]
 
-{ #category : #'visiting - query parts' }
+{ #category : 'visiting - query parts' }
 QRRPostgreSqlQueryBuilder >> visitQueryJoinsOf: aQuery with: aStream [
 	aQuery joinsDo: [ :join |
 		self visit: join with: aStream ]
 ]
 
-{ #category : #'visiting - query parts' }
+{ #category : 'visiting - query parts' }
 QRRPostgreSqlQueryBuilder >> visitQueryLimit: aQueryLimit with: aStream [
 	self printIfNotNil: aQueryLimit limit
 		precededBy: String cr , 'LIMIT '
@@ -340,12 +341,12 @@ QRRPostgreSqlQueryBuilder >> visitQueryLimit: aQueryLimit with: aStream [
 		on: aStream
 ]
 
-{ #category : #'visiting - expressions' }
+{ #category : 'visiting - expressions' }
 QRRPostgreSqlQueryBuilder >> visitQueryLiteral: aQueryLiteral with: aStream [
 	aStream nextPutAll: aQueryLiteral value asString
 ]
 
-{ #category : #'visiting - queries' }
+{ #category : 'visiting - queries' }
 QRRPostgreSqlQueryBuilder >> visitQueryNestedQuery: aNestedQuery with: aStream [
 	self
 		parenthesized: [
@@ -353,7 +354,7 @@ QRRPostgreSqlQueryBuilder >> visitQueryNestedQuery: aNestedQuery with: aStream [
 		on: aStream
 ]
 
-{ #category : #'visiting - operations' }
+{ #category : 'visiting - operations' }
 QRRPostgreSqlQueryBuilder >> visitQueryNonExistenceOperation: aQueryOperation with: aStream [
 	self
 		parenthesized: [
@@ -363,7 +364,7 @@ QRRPostgreSqlQueryBuilder >> visitQueryNonExistenceOperation: aQueryOperation wi
 		on: aStream
 ]
 
-{ #category : #'visiting - operations' }
+{ #category : 'visiting - operations' }
 QRRPostgreSqlQueryBuilder >> visitQueryNonInclusionOperation: aQueryOperation with: aStream [
 	self
 		parenthesized: [
@@ -375,25 +376,25 @@ QRRPostgreSqlQueryBuilder >> visitQueryNonInclusionOperation: aQueryOperation wi
 		on: aStream
 ]
 
-{ #category : #'visiting - operations' }
+{ #category : 'visiting - operations' }
 QRRPostgreSqlQueryBuilder >> visitQueryNotOperation: aQueryOperation with: aStream [
 	aStream nextPutAll: 'NOT '.
 	self visit: aQueryOperation expression with: aStream
 ]
 
-{ #category : #'visiting - expressions' }
+{ #category : 'visiting - expressions' }
 QRRPostgreSqlQueryBuilder >> visitQueryNumberConstant: aQueryConstant with: aStream [
 	aStream nextPutAll: (self numberConstantFor: aQueryConstant value)
 ]
 
-{ #category : #'visiting - conditions' }
+{ #category : 'visiting - conditions' }
 QRRPostgreSqlQueryBuilder >> visitQueryOrCondition: aQueryCondition with: aStream [
 	self visitQueryCondition: aQueryCondition
 		separatedBy: ' OR '
 		with: aStream
 ]
 
-{ #category : #'visiting - query parts' }
+{ #category : 'visiting - query parts' }
 QRRPostgreSqlQueryBuilder >> visitQueryOrdering: aQueryOrdering with: aStream [
 	aQueryOrdering isEmpty ifTrue: [
 		^ self ].
@@ -412,19 +413,20 @@ QRRPostgreSqlQueryBuilder >> visitQueryOrdering: aQueryOrdering with: aStream [
 			aStream nextPutAll: ', ' ]
 ]
 
-{ #category : #'visiting - expressions' }
+{ #category : 'visiting - expressions' }
 QRRPostgreSqlQueryBuilder >> visitQuerySimpleColumn: aQueryConstant with: aStream [
-	(aQueryConstant identifiers collect: [ :each | self escapeIdentifier: each ])
-		printOn: aStream
-		delimiter: '.'
+
+	aQueryConstant identifiers
+		do: [ :each | aStream nextPutAll: (self escapeIdentifier: each) ]
+		separatedBy: [ aStream nextPut: $. ]
 ]
 
-{ #category : #'visiting - expressions' }
+{ #category : 'visiting - expressions' }
 QRRPostgreSqlQueryBuilder >> visitQueryStringConstant: aQueryConstant with: aStream [
 	aStream nextPutAll: (self stringConstantFor: aQueryConstant value)
 ]
 
-{ #category : #'visiting - queries' }
+{ #category : 'visiting - queries' }
 QRRPostgreSqlQueryBuilder >> visitSelectQuery: aQuery with: aStream [
 	| hasColumns |
 	aStream nextPutAll: 'SELECT '.
@@ -449,7 +451,7 @@ QRRPostgreSqlQueryBuilder >> visitSelectQuery: aQuery with: aStream [
 	self visit: aQuery limit with: aStream
 ]
 
-{ #category : #'visiting - queries' }
+{ #category : 'visiting - queries' }
 QRRPostgreSqlQueryBuilder >> visitUpdateQuery: aQuery with: aStream [
 	aStream singleTableQuery: true.
 	
@@ -470,7 +472,7 @@ QRRPostgreSqlQueryBuilder >> visitUpdateQuery: aQuery with: aStream [
 	self visitWhereCondition: aQuery condition with: aStream
 ]
 
-{ #category : #'visiting - conditions' }
+{ #category : 'visiting - conditions' }
 QRRPostgreSqlQueryBuilder >> visitWhereCondition: aCondition with: aStream [
 	self visitCondition: aCondition precededBy: String cr , 'WHERE ' with: aStream
 ]
