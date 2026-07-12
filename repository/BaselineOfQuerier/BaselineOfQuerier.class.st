@@ -11,7 +11,7 @@ BaselineOfQuerier >> baseline: spec [
 	<baseline>
 	spec for: #common do: [ 
 		spec
-			baseline: 'P3' with: [ spec repository: 'github://svenvc/P3:baf8c3d' ];
+			baseline: 'P3' with: [ spec repository: 'github://svenvc/P3:d45f0d3' ];
 			package: 'Querier' with: [ spec requires: #( 'P3' ) ];
 			package: 'Querier-PostgreSQL'
 			with: [ spec requires: #( 'Querier' ) ] ]
